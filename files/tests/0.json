@@ -1,5 +1,6 @@
 {
     "name": "test1",
+    "description": "desc1",
     "questions": [0, 1],
     "results": [0, 1]
 }

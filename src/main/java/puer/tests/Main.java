@@ -30,14 +30,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-        // AnswerDao answerDao = new AnswerDao();
-        // Answer answer = new Answer(4, "test");
-        // answerDao.save(answer);
-        // Answer answer = answerDao.get(4);
-        // answerDao.delete(answer);
-        QuestionDao questionDao = new QuestionDao();
-        Question question = questionDao.get(0);
-        System.out.println(question.getAnswers());
         Application.launch(args);
     }
 }

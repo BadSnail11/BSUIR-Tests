@@ -20,6 +20,7 @@ public class TestDao implements Dao<Test> {
 
     private static enum Fields {
         name,
+        description,
         questions,
         results,
     }
@@ -28,6 +29,7 @@ public class TestDao implements Dao<Test> {
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put(Fields.name.name(), t.getName());
+            jsonObject.put(Fields.description.name(), t.getDescription());
             jsonObject.put(Fields.questions.name(), t.getQuestions());
             jsonObject.put(Fields.results.name(), t.getResults());
             return jsonObject;
@@ -39,6 +41,7 @@ public class TestDao implements Dao<Test> {
     private Test jsonToTest(int id, JSONObject obj) throws Exception {
         try {
             Test test = new Test(id, (String) obj.get(Fields.name.name()));
+            test.setDescription((String) obj.get(Fields.description.name()));
             test.setQuestions(Dao.jsonArrayToList((JSONArray) obj.get(Fields.questions.name())));
             test.setResults(Dao.jsonArrayToList((JSONArray) obj.get(Fields.results.name())));
             return test;
