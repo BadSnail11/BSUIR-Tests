@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 public class AnswerDao implements Dao<Answer> {
 
-    // private final String path = "files\\answers\\";
     private final Path PATH = Paths.get("files\\answers\\");
 
     private static enum Fields {
@@ -46,13 +45,8 @@ public class AnswerDao implements Dao<Answer> {
 
     @Override
     public Answer get(int id) {
-        JSONObject jsonObject = Dao.readJsonFromFile(PATH.toString(), id);
-        // if (jsonObject != null) {
-        //     Answer test = new Answer(id, (String) jsonObject.get(Fields.name.name()));
-        //     test.setValue(((Long) jsonObject.get(Fields.value.name())).intValue());
-        //     return test;
-        // }
         try {
+            JSONObject jsonObject = Dao.readJsonFromFile(PATH.toString(), id);
             Answer answer = jsonToAnswer(id, jsonObject);
             return answer;
         } catch (Exception e) {
@@ -72,8 +66,6 @@ public class AnswerDao implements Dao<Answer> {
             for (var path : files) {
                 id = Integer.parseInt(path.toFile().getName().split("\\.")[0]);
                 jsonObject = Dao.readJsonFromFile(PATH.toString(), id);
-                // answer = new Answer(id, (String) jsonObject.get(Fields.name.name()));
-                // answer.setValue(((Long) jsonObject.get(Fields.value.name())).intValue());
                 answer = jsonToAnswer(id, jsonObject);
                 list.add(answer);
             }
@@ -87,9 +79,6 @@ public class AnswerDao implements Dao<Answer> {
     @Override
     public void save(Answer t) {
         try {
-            // JSONObject jsonObject = new JSONObject();
-            // jsonObject.put(Fields.name.name(), t.getName());
-            // jsonObject.put(Fields.value.name(), t.getValue());
             JSONObject jsonObject = answerToJSON(t);
             Dao.writeJsonToFile(jsonObject, PATH.toString(), t.getId());
         } catch (Exception e) {
@@ -100,8 +89,6 @@ public class AnswerDao implements Dao<Answer> {
     @Override
     public void update(Answer t) {
         try {
-            // JSONObject jsonObject = new JSONObject();
-            // jsonObject.put(Fields.name, jsonObject)
             if (!Dao.pathContains(t.getId(), PATH))
                 return;
             JSONObject jsonObject = answerToJSON(t);

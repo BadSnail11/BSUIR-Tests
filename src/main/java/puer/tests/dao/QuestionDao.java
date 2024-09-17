@@ -37,8 +37,6 @@ public class QuestionDao implements Dao<Question> {
     private Question jsonToQuestion(int id, JSONObject obj) throws Exception {
         try {
             Question question = new Question(id, (String) obj.get(Fields.description.name()));
-            // answer.setValue(((Long) obj.get(Fields.value.name())).intValue());
-            // question.setAnswers(Arrays.asList((Integer[])((JSONArray) obj.get(Fields.answers)).toArray()));
             question.setAnswers(Dao.jsonArrayToList((JSONArray) obj.get(Fields.answers.name())));
             return question;
         } catch (Exception e) {
@@ -48,8 +46,8 @@ public class QuestionDao implements Dao<Question> {
 
     @Override
     public Question get(int id) {
-        JSONObject jsonObject = Dao.readJsonFromFile(PATH.toString(), id);
         try {
+            JSONObject jsonObject = Dao.readJsonFromFile(PATH.toString(), id);
             Question question = jsonToQuestion(id, jsonObject);
             return question;
         } catch (Exception e) {

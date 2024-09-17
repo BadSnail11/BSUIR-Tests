@@ -5,11 +5,16 @@ import java.util.List;
 public class Test {
     private int id;
     private String name;
-    private List<Question> questions;
-    private List<Result> results;
+    private List<Integer> questions;
+    private List<Integer> results;
 
-    public Test(String name) {
+    public Test(int id, String name) {
+        this.id = id;
         this.name = name;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -20,19 +25,19 @@ public class Test {
         this.name = name;
     }
 
-    public List<Question> getQuestions() {
+    public List<Integer> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(List<Question> questions) {
+    public void setQuestions(List<Integer> questions) {
         this.questions = questions;
     }
 
-    public List<Result> getResults() {
+    public List<Integer> getResults() {
         return results;
     }
 
-    public void setResults(List<Result> results) {
+    public void setResults(List<Integer> results) {
         this.results = results;
     }
 }
