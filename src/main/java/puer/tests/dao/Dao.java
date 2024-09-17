@@ -47,7 +47,6 @@ public interface Dao<T> {
         }
     }
 
-
     public static void writeJsonToFile(JSONObject jsonObject, String path, int id) {
         String fileName = path + "\\" + Integer.toString(id) + ".json";
         try (FileWriter file = new FileWriter(fileName)) {
@@ -90,6 +89,24 @@ public interface Dao<T> {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public static int getNewId(Path path) {
+        try {
+            var files = Files.list(path).collect(Collectors.toList());
+            int id = -1;
+            int currentId;
+            for (var currentPath : files) {
+                currentId = Integer.parseInt(currentPath.toFile().getName().split("\\.")[0]);
+                if (currentId > id) {
+                    id = currentId;
+                }
+            }
+            return id;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
         }
     }
 }

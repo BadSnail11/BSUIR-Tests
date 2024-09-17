@@ -7,6 +7,10 @@ public class Question {
     private String description;
     private List<Integer> answers;
 
+    public Question(String description) {
+        this.description = description;
+    }
+
     public Question(int id, String description) {
         this.id = id;
         this.description = description;
@@ -14,6 +18,10 @@ public class Question {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescription() {

@@ -79,6 +79,7 @@ public class AnswerDao implements Dao<Answer> {
     @Override
     public void save(Answer t) {
         try {
+            t.setId(Dao.getNewId(PATH));
             JSONObject jsonObject = answerToJSON(t);
             Dao.writeJsonToFile(jsonObject, PATH.toString(), t.getId());
         } catch (Exception e) {

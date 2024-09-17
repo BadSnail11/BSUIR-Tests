@@ -86,6 +86,7 @@ public class TestDao implements Dao<Test> {
     @Override
     public void save(Test t) {
         try {
+            t.setId(Dao.getNewId(PATH));
             JSONObject jsonObject = testToJSON(t);
             Dao.writeJsonToFile(jsonObject, PATH.toString(), t.getId());
         } catch (Exception e) {

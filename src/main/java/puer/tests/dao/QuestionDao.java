@@ -80,6 +80,7 @@ public class QuestionDao implements Dao<Question> {
     @Override
     public void save(Question t) {
         try {
+            t.setId(Dao.getNewId(PATH));
             JSONObject jsonObject = questionToJSON(t);
             Dao.writeJsonToFile(jsonObject, PATH.toString(), t.getId());
         } catch (Exception e) {

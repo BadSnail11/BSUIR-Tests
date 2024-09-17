@@ -6,6 +6,10 @@ public class Result {
     private int minValue;
     private int maxValue;
 
+    public Result(String description) {
+        this.description = description;
+    }
+
     public Result(int id, String description) {
         this.id = id;
         this.description = description;
@@ -13,6 +17,10 @@ public class Result {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescription() {

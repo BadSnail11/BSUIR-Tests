@@ -82,6 +82,7 @@ public class ResultDao implements Dao<Result> {
     @Override
     public void save(Result t) {
         try {
+            t.setId(Dao.getNewId(PATH));
             JSONObject jsonObject = resultToJSON(t);
             Dao.writeJsonToFile(jsonObject, PATH.toString(), t.getId());
         } catch (Exception e) {
